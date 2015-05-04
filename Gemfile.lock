@@ -124,11 +124,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.1.8)
-<<<<<<< HEAD
   rails-footnotes
-=======
-  rails-footnotes (>= 4.0.0, < 5)
->>>>>>> 7fd7d974efeb2fb1a62bceab53e510d62415a704
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   sqlite3
