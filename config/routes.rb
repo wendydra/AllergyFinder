@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-  resources :sessions, :mains, :users
+  resources :sessions, :mains, :users, :meals
   post 'mains/test' => 'mains#test'
   root 'users#index'
   
