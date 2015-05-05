@@ -42,3 +42,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'rails-footnotes'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'hirb'
+gem "paperclip", "~> 4.2"

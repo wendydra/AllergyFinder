@@ -10,7 +10,12 @@
 		<!-- Item selection -->
 		<div class='container'>
 			<div class='row'>
-				<div class='col-md-7 col-md-offset-5'>
+
+				<div class='col-md-4'>
+					<a href='/meals'><button class='btn btn-primary'>New Meal</button></a>
+				</div>
+
+				<div class='col-md-4'>
 					<form action='mains/test' method='post'>
 					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 
