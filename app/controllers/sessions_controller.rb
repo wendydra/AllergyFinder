@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
 		# redirect_to '/users'
 	else
 		session[:user_id] = user.id
-		flash[:success] = "Logged in :P"
-		redirect_to '/users'
+		redirect_to '/mains'
 	end
   end
 
