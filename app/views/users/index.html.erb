@@ -1,3 +1,46 @@
-<h1>User#index</h1>
-<p>Find me in app/views/user/index.html.erb</p>
-<button class='btn btn-info'>Stuff</button>
+<div class='container'>
+
+		<div class='row'>
+			<h1>Allergy Finder</h1>
+		</div>
+
+		<div class='row'>
+			<div class='col-sm-1'>
+			</div>
+			<div class='col-sm-4' style='text-align:right'>
+				<h3 style='text-align: center'>Register</h3><br>
+				<% if @errors %>
+					<% @errors.each do |error| %>
+						<p style='color:red'><%= error %></p>
+					<% end %>
+				<% end %>
+				<% if @success %>
+					<h4 style='color:green'><%= @success %></h4>
+				<% end %>
+				<form action='/users' method='post'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					<label>Name</label>
+					<input type='text' name='user[name]'><br>
+					<label>Email</label>
+					<input type='text' name='user[email]'><br>
+					<label>Password</label>
+					<input type='password' name='user[password]' placeholder='minimum 7 characters'><br>
+					<label>Confirm Password</label>
+					<input type='password' name='user[password_confirmation]'><br><br>
+					<input type='submit' value='Register' class='btn btn-primary'>
+				</form>
+			</div>
+			<div class='col-sm-4' style='text-align:right'>
+				<h3 style='text-align: center'>Login</h3><br>
+				<form action='/sessions' method='post'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					<label>Email</label>
+					<input type='text' name='session[email]'><br>
+					<label>Password</label>
+					<input type='password' name='session[password]'><br><br>
+					<input type='submit' value='Log In' class='btn btn-primary'>
+				</form>
+			</div>
+		</div>
+
+	</div>
