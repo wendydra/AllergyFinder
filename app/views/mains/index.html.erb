@@ -4,29 +4,115 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<style>
+		.btn{
+			margin-top:6px;
+		}
+		</style>
+
+		<!-- JQuery Accordian -->
+		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		  <link rel="stylesheet" href="/resources/demos/style.css">
+		  <script>
+		  $(function() {
+		    var icons = {
+		      header: "ui-icon-circle-arrow-e",
+		      activeHeader: "ui-icon-circle-arrow-s"
+		    };
+		    $( "#accordion" ).accordion({
+		      heightStyle: "content",
+		      icons: icons
+		      
+		    });
+		    $( "#toggle" ).button().click(function() {
+		      if ( $( "#accordion" ).accordion( "option", "icons" ) ) {
+		        $( "#accordion" ).accordion( "option", "icons", null );
+		      } else {
+		        $( "#accordion" ).accordion( "option", "icons", icons );
+		      }
+		    });
+		  });
+		  </script>
 	</head>
 	<body>
+		<!-- Navbar Render -->
 		<%= render 'partials/navbar' %>
+
 		<!-- Item selection -->
 		<div class='container'>
 			<div class='row'>
-				<div class='col-md-7 col-md-offset-5'>
-					<form action='mains/test' method='post'>
-					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+				<div class='col-md-4 col-md-offset-3'>
+					<!-- Accordian -->
+					<form action='mains/test' method='post' class='tab'>
+						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+						<div id="accordion">
+						  <h3>Grains</h3>
+						  <div>
+						  	<p>
+						    <input type="checkbox" value="rice" name='output["grain"][]'> Rice
+						  </p>
+	  					  <p>
+						    <input type="checkbox" value="brown rice" name='output["grain"][]'> Brown rice
+						  </p>
+						   <p>
+						    <input type="checkbox" value="wheat" name='output["grain"][]'> Wheat
+						  </p>
+						  </div>
+						  <h3>Vegetables</h3>
+						  <div>
+						    <p>
+						    <input type="checkbox" value="carrots" name='output["vegetable"][]'> Carrots
+						  </p>
+	  					  <p>
+						    <input type="checkbox" value="eggplant" name='output["vegetable"][]'> Eggplant
+						  </p>
+						   <p>
+						    <input type="checkbox" value="zucchini" name='output["vegetable"][]'> Zucchini
+						  </p>
+						  </div>
+						  <h3>Fruits</h3>
+						  <div>
+						    <p>Fruits Here </p>
+						  </div>
+						  <h3>Dairy</h3>
+						  <div>
+						    <p>Dairy Here</p>
+						  </div>
 
+
+						</div> <!-- accordian div -->
+					<!-- Submit -->
+						<button class='btn btn-success btn-xs pull-right'>Submit</button>
+					</form>
+
+					<!-- Grain Tab -->
+<!-- 					<form action='mains/test' method='post' class='tab'>
+					
 						<div class="checkbox">
-						  <label>
-						    <input type="checkbox" value="rice" name='output[]'> Rice
-						  </label>
-	  					  <label>
-						    <input type="checkbox" value="brown rice" name='output[]'> Brown rice
-						  </label>
-						   <label>
-						    <input type="checkbox" value="wheat" name='output[]'> Wheat
-						  </label>
+							<input type='hidden' value='grains' name='category'>
+						  
 						</div>
 						<button class='btn btn-info btn-xs'>Test</button>
-					</form>
+					</form> -->
+					<!-- Veg Tab -->
+<!-- 					<form action='mains/test' method='post' class='tab'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+						<div class="checkbox">
+							<input type='hidden' value='vegetables' name='category'>
+						  <p>
+						    <input type="checkbox" value="carrots" name='output[]'> Carrots
+						  </p>
+	  					  <p>
+						    <input type="checkbox" value="eggplant" name='output[]'> Eggplant
+						  </p>
+						   <p>
+						    <input type="checkbox" value="zucchini" name='output[]'> Zucchini
+						  </p>
+						</div>
+						<button class='btn btn-info btn-xs'>Test</button>
+					</form> -->
 				</div>
 			</div>
 		</div>
