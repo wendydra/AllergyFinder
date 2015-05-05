@@ -20,4 +20,8 @@ class MainsController < ApplicationController
 
   def destroy
   end
+
+  def test
+    @test = params[:output]
+  end
 end
