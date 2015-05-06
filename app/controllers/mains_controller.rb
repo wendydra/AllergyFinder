@@ -37,10 +37,6 @@ class MainsController < ApplicationController
     #  Generates hash of sum of all ingredients a user has in the DB
     @totalIngredients = Hash.new
     @ingredients.each do |ingredient|
-      puts "*******************"
-      puts @user.id
-      puts "*******************"
-      
       if ingredient.meal.user.id == @user.id
         if @totalIngredients[ingredient.name]
           @totalIngredients[ingredient.name] = @totalIngredients[ingredient.name] + 1

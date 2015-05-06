@@ -7,6 +7,9 @@
 	#radio{
 		margin-top:10px;
 	}
+	.symptomButton{
+		display: inline-block;
+	}
 	</style>
 	<!-- JQuery Accordian -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -21,28 +24,18 @@
 </head>
 
 <div class='container'>
-	<h1>Data Analysis</h1>
 
-<!-- 	<div id="radio">
-	    <input type="radio" id="radio1" name="radio"><label for="radio1">Nausea</label>
-	    <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Cramps</label>
-	    <input type="radio" id="radio3" name="radio"><label for="radio3">Vomiting</label>
-	    <input type="radio" id="radio4" name="radio"><label for="radio4">Diarrhea</label>
-	    <input type="radio" id="radio5" name="radio"><label for="radio5">Gas</label>
-	    <input type="radio" id="radio6" name="radio"><label for="radio6">Heartburn</label>
-	    <input type="radio" id="radio7" name="radio"><label for="radio7">Headache</label>
-	    <input type="radio" id="radio8" name="radio"><label for="radio8">Itchiness</label>
-	    <input type="radio" id="radio9" name="radio"><label for="radio9">Rash</label>
-	    <input type="radio" id="radio10" name="radio"><label for="radio10">Irritability</label>
-   </div> -->
-
-    <% @symptoms.each do |symptom| %>
-	<form action='/test' method='post'>
-		<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-		<input type='hidden' name='symptom' value='<%= symptom.id %>'>
-   		<button class='btn btn-primary'><%= symptom.name %></button>
-	</form>   		
-    <% end %>
+	<h1>Data Analysis For <%= @user.name %></h1>
+	
+	<div class='buttons'>
+	    <% @symptoms.each do |symptom| %>
+		<form action='/test' method='post' class='symptomButton'>
+			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+			<input type='hidden' name='symptom' value='<%= symptom.id %>'>
+	   		<button class='btn btn-info'><%= symptom.name %></button>
+		</form>   		
+	    <% end %>
+	</div>
 
 	<table class="table table-striped">
 		<thead>
