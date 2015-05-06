@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'meals/ingredients' => 'meals#ingredients'
   get '/test' => 'mains#test'
   post '/test' => 'mains#test'
+
   root 'users#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
