@@ -52,23 +52,20 @@
 		<!-- Reaction Sliders -->
 		<div class='row'>
 			<div class='col-md-10 col-md-offset-1'>
-				<%=  image_tag "digest.png", alt: "digestion", class: "digest center-block " %> 
-				<form>
+				<%=  image_tag "digest.png", alt: "digestion", class: "digest center-block " %>
+					<%if @success_msg%>
+					<p class='text-center' style='color: green;'><%=@success_msg%></p>
+					<%end%>
+				<form action='/reactions' method='post'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 					<label class='center-block text-center'>Reaction Severity Level:
-					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					<input type="text" id="amount" name='severity_level' readonly style="border:0; color:#f6931f; font-weight:bold;">
 					</label>
 					<div class='slider center-block' id="slider-range-max"></div>
 					<div id="radio" class='center-block'>
-					    <input type="radio" id="radio1" name="radio"><label for="radio1">Nausea</label>
-					    <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Cramps</label>
-					    <input type="radio" id="radio3" name="radio"><label for="radio3">Vomiting</label>
-					    <input type="radio" id="radio4" name="radio"><label for="radio4">Diarrhea</label>
-					    <input type="radio" id="radio5" name="radio"><label for="radio5">Gas</label>
-					    <input type="radio" id="radio6" name="radio"><label for="radio6">Heartburn</label>
-					    <input type="radio" id="radio7" name="radio"><label for="radio7">Headache</label>
-					    <input type="radio" id="radio8" name="radio"><label for="radio8">Itchiness</label>
-					    <input type="radio" id="radio9" name="radio"><label for="radio9">Rash</label>
-					    <input type="radio" id="radio10" name="radio"><label for="radio10">Irritability</label>
+						<% @symptoms.each do |symptom|%>
+							<input type="radio" value="<%= symptom.id %>" id="<%= symptom.id %>" name="symptom_id"><label for="<%= symptom.id %>"><%= symptom.name %></label>
+						<%end%>
 				   </div>
 					<button class='btn btn-warning center-block'>Add Symptom</button>
 				</form>
