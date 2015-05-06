@@ -1,14 +1,18 @@
-<%@test.each do |key, item| %>
-<%="Category: #{key} "%><br>
-<%="Ingredients:"%>
-<%item.each do |ing|%>
-<%=" #{ing}"%>
-<%end%><br>
+<div class='container'>
+	<h1>The motherfucking data!</h1>
 
-<% end %>
+	<h3>Foods</h3>
+	<%= @foods %>
+	<% @foods.each do |key, val| %>
+	    <p><%= key %>: <%= val %></p>
+	<% end %>
+
+	<h3>Reactions</h3>
+	<%= @doof %>
+	<% @doof.each do |key, val| %>
+	    <p><%= key %>: <%= val %></p>
+	<% end %>
 
 
 
-
-<!-- {"2"=>["brown rice", "wheat"], "5"=>["carrots", "eggplant", "zucchini"]} -->
-
+</div>

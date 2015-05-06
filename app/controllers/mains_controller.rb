@@ -22,10 +22,43 @@ class MainsController < ApplicationController
   end
 
   def test
-    @test = params[:output]
-    @category = params[:category]
+    @user = User.find(session[:user_id])
+    @ingredients = Ingredient.all
+    @reactions = Reaction.all
 
-    # Queries in Waiting
-    # User.find(session[:user_id]).meals.create(symptom_id: params[:symptom]).ingredients.create(name: params[:ingredient], category_id: params[:category_id])
-  end
+    @foods = Hash.new
+    @ingredients.each do |ingredient|
+      if ingredient.meal.user.id == @user.id
+        if @foods[ingredient.name]
+          @foods[ingredient.name] = @foods[ingredient.name] + 1
+        else
+          @foods[ingredient.name] = 1
+        end
+      end
+    end
+
+    @doof = Hash.new
+    @reactions.each do |reaction|
+      if reaction.symptom_id == 1 && reaction.meal.user.id == @user.id
+        @ingredients.each do |ingredient|
+          if ingredient.meal.user.id == @user.id && ingredient.meal_id == reaction.meal_id
+            if @doof[ingredient.name]
+              @doof[ingredient.name] = @doof[ingredient.name] + 1
+            else
+              @doof[ingredient.name] = 1
+            end
+          end
+        end
+      end
+    end
+
+    # @stuff = Hash.new
+    # @foods.each do |key, food|
+    #   @stuff[name] = key
+      
+    # end
+
+
+  end #end test def
+
 end
