@@ -17,9 +17,10 @@
  @import "bootstrap-sprockets"; 
  @import "bootstrap";
  
- body{
- font-family: 'Maven Pro', sans-serif;
+*{
+font-family: 'Quicksand', sans-serif;
  }
 .login{
 	background-image: url('background.png');
 }
+
