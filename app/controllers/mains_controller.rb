@@ -4,6 +4,25 @@ class MainsController < ApplicationController
   end
 
   def show
+    #  Graph Variables
+    @user = User.find(session[:user_id])
+    @symptoms = Symptom.all
+    @ingredients = Ingredient.all
+    @reactions = Reaction.all
+    @totalsHash = Hash.new
+    @meals = Meal.all
+
+    #Finds all meals a user has input
+    @allMeals = Meal.where(user_id: session[:user_id])
+    # @allIngrs = Ingredient.where(id: @allMeals.id)
+      @allMeals.each do |output|
+
+
+      puts "*************"
+      puts output.id
+      # puts @allIngrs
+      puts "*************"
+      end
   end
 
   def new
