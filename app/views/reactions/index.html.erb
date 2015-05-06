@@ -62,7 +62,7 @@
 					<input type="text" id="amount" name='severity_level' readonly style="border:0; color:#f6931f; font-weight:bold;">
 					</label>
 					<div class='slider center-block' id="slider-range-max"></div>
-					<div id="radio" class='center-block'>
+					<div id="radio" class='center-block text-center'>
 						<% @symptoms.each do |symptom|%>
 							<input type="radio" value="<%= symptom.id %>" id="<%= symptom.id %>" name="symptom_id"><label for="<%= symptom.id %>"><%= symptom.name %></label>
 						<%end%>
