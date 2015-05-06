@@ -25,38 +25,51 @@ class MainsController < ApplicationController
     @user = User.find(session[:user_id])
     @ingredients = Ingredient.all
     @reactions = Reaction.all
+    @symptoms = Symptom.all
+    
+    if params[:symptom]
+      @symptomName = Symptom.find(params[:symptom])
+      @symptomNum = params[:symptom].to_i
+    else
+      @symptomNum = 1
+    end
 
-    @foods = Hash.new
+    #  Generates has of sum of all ingredients a user has in the DB
+    @totalIngredients = Hash.new
     @ingredients.each do |ingredient|
       if ingredient.meal.user.id == @user.id
-        if @foods[ingredient.name]
-          @foods[ingredient.name] = @foods[ingredient.name] + 1
+        if @totalIngredients[ingredient.name]
+          @totalIngredients[ingredient.name] = @totalIngredients[ingredient.name] + 1
         else
-          @foods[ingredient.name] = 1
+          @totalIngredients[ingredient.name] = 1
         end
       end
     end
 
-    @doof = Hash.new
+    # Generates a hash of sum of reactions to a specific ingredient
+    @reactionsTotal = Hash.new
     @reactions.each do |reaction|
-      if reaction.symptom_id == 1 && reaction.meal.user.id == @user.id
+      if reaction.symptom_id == @symptomNum && reaction.meal.user.id == @user.id
         @ingredients.each do |ingredient|
           if ingredient.meal.user.id == @user.id && ingredient.meal_id == reaction.meal_id
-            if @doof[ingredient.name]
-              @doof[ingredient.name] = @doof[ingredient.name] + 1
+            if @reactionsTotal[ingredient.name]
+              @reactionsTotal[ingredient.name] = @reactionsTotal[ingredient.name] + 1
             else
-              @doof[ingredient.name] = 1
+              @reactionsTotal[ingredient.name] = 1
             end
           end
         end
       end
     end
 
-    # @stuff = Hash.new
-    # @foods.each do |key, food|
-    #   @stuff[name] = key
-      
-    # end
+    #  Generates a hash to be sent to view containing data for all totals
+    @totalsHash = Hash.new
+    @totalIngredients.each do |key, food|
+      @totalsHash[key] = food,0
+    end
+    @reactionsTotal.each do |key, reactionsTotal|
+      @totalsHash[key][1] = reactionsTotal
+    end
 
 
   end #end test def
