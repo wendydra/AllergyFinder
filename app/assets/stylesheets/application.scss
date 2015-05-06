@@ -13,5 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap-sprockets"; 
  @import "bootstrap";
+ 
+ body{
+ font-family: 'Maven Pro', sans-serif;
+ }
+.login{
+	background-image: url('background.png');
+}

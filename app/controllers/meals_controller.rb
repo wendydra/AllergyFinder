@@ -35,8 +35,6 @@ class MealsController < ApplicationController
     redirect_to '/meals'
   end  
 
-
-
   def update
   end
 

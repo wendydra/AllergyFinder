@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :sessions, :mains, :users, :meals
+  resources :sessions, :mains, :users, :meals, :reactions
   post 'meals/ingredients' => 'meals#ingredients'
   get '/test' => 'mains#test'
   root 'users#index'
