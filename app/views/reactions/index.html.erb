@@ -1,0 +1,79 @@
+<head>
+<!-- Bootstrap CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<style>
+	.slider{
+		width:280px;
+	}
+	#amount{
+		width:20px;
+		display:inline-block;
+	}
+	#format { 
+		margin-top: 2em; 
+	}
+	#radio{
+		margin-top:10px;
+	}
+	.digest{
+		width: 25%;
+	}
+	</style>
+	<!-- JQuery Accordian -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$(function() {s
+		    $( "#slider-range-max" ).slider({
+		      range: "max",
+		      min: 1,
+		      max: 10,
+		      value: 5,
+		      slide: function( event, ui ) {
+		        $( "#amount" ).val( ui.value );
+		      }
+		    });
+		    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+
+		    $( "#radio" ).buttonset();
+		});
+
+	</script>
+</head>
+<body>
+	<!-- Navbar Render -->
+	<%= render 'partials/navbar' %>
+	
+	<!-- Main Body	 -->
+	<div class='container'>
+		<!-- Reaction Sliders -->
+		<div class='row'>
+			<div class='col-md-10 col-md-offset-1'>
+				<%=  image_tag "digest.png", alt: "digestion", class: "digest center-block " %> 
+				<form>
+					<label class='center-block text-center'>Reaction Severity Level:
+					<input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</label>
+					<div class='slider center-block' id="slider-range-max"></div>
+					<div id="radio">
+					    <input type="radio" id="radio1" name="radio"><label for="radio1">Nausea</label>
+					    <input type="radio" id="radio2" name="radio" checked="checked"><label for="radio2">Cramps</label>
+					    <input type="radio" id="radio3" name="radio"><label for="radio3">Vomiting</label>
+					    <input type="radio" id="radio4" name="radio"><label for="radio4">Diarrhea</label>
+					    <input type="radio" id="radio5" name="radio"><label for="radio5">Gas</label>
+					    <input type="radio" id="radio6" name="radio"><label for="radio6">Heartburn</label>
+					    <input type="radio" id="radio7" name="radio"><label for="radio7">Headache</label>
+					    <input type="radio" id="radio8" name="radio"><label for="radio8">Itchiness</label>
+					    <input type="radio" id="radio9" name="radio"><label for="radio9">Rash</label>
+					    <input type="radio" id="radio10" name="radio"><label for="radio10">Irritability</label>
+				   </div>
+					<button class='btn btn-warning center-block'>Add Symptom</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</body>

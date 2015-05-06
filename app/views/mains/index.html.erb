@@ -8,6 +8,9 @@
 		.btn{
 			margin-top:6px;
 		}
+		html{
+			background-image: url("/images/background.png");
+		}
 		</style>
 
 		<!-- JQuery Accordian -->
@@ -39,38 +42,6 @@
 		<!-- Navbar Render -->
 		<%= render 'partials/navbar' %>
 
-		<!-- Item selection -->
-		<div class='container'>
-			<div class='row'>
-				<div class='col-md-4 col-md-offset-3'>
-					<!-- Accordian -->
-					<form action='mains/test' method='post' class='tab'>
-						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-						<div id="accordion">
-						  <h3>Grains</h3>
-						  <div>
-							<p><input type="checkbox" value="rice" name='output["grain"][]'> Rice</p>
-		  					<p><input type="checkbox" value="brown rice" name='output["grain"][]'> Brown rice</p>
-							<p><input type="checkbox" value="wheat" name='output["grain"][]'> Wheat</p>
-						  </div>
-						  <h3>Vegetables</h3>
-						  <div>
-						    <p><input type="checkbox" value="carrots" name='output["vegetable"][]'> Carrots</p>
-	  					 	<p><input type="checkbox" value="eggplant" name='output["vegetable"][]'> Eggplant</p>
-						    <p><input type="checkbox" value="zucchini" name='output["vegetable"][]'> Zucchini</p>
-						  </div>
-						  <h3>Fruits</h3>
-						  <div>
-						    <p>Fruits Here </p>
-						  </div>
-						  <h3>Dairy</h3>
-						  <div>
-						    <p>Dairy Here</p>
-						  </div>
-						</div> <!-- accordian div ends here-->
-					<!-- Accordian Submit -->
-						<button class='btn btn-success btn-xs pull-right'>Submit</button>
-					</form>
 
 				<div class='col-md-4'>
 					<a href='/meals'><button class='btn btn-primary'>New Meal</button></a>
