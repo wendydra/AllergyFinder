@@ -1,7 +1,17 @@
 <html>
 	<head>
+		<!-- Bootstrap CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
 		<style>
+		label, .form-control{
+			display:inline-block;
+		}
+		.reg-modal{
+			width:300px;
+		}
 		.login{
 			min-height:600px;
 		}
@@ -11,49 +21,93 @@
 			color:white;
 		    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 		}
+		.login-div{
+			color:white;
+		    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+			margin-top:30px;
+			width:250px;
+		}
+		.intro{
+			width:400px;
+		}
 		</style>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#myModal").modal('show');
+
+			$( "#register" ).click(function() {
+				$("#myModal").modal('show');
+			});
+		});
+		</script>
 	</head>
 	<body>
+	
 	<div class='container login'>
 		<div class='row text-center'>
-			<h1 class='title'>Food Intolerance Evaluation</h1>
+			<h1 class='title'>Food Intolerance Evaluator</h1>
 		</div>
-			<div class='row'>
-				<!-- Registration -->
-				<div class='col-sm-4 col-sm-offset-1' style='text-align:right'>
-					<h3 style='text-align: center'>Register</h3><br>
-					<% if @errors %>
-						<% @errors.each do |error| %>
-							<p style='color:red'><%= error %></p>
+		<div class='row center-block text-center'>
+			<!-- Registration Modal -->
+			<div id="myModal" class="modal fade center-block">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                <h4 class="modal-title">Register</h4>
+			            </div>
+			            <!-- Ruby Logic -->
+			            <% if @errors %>
+							<% @errors.each do |error| %>
+								<p class="text-warning"><%= error %></p>
+							<% end %>
 						<% end %>
-					<% end %>
-					<% if @success %>
-						<h4 style='color:green'><%= @success %></h4>
-					<% end %>
-					<form action='/users' method='post'>
-						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-						<label>Name</label>
-						<input type='text' name='user[name]'><br>
-						<label>Email</label>
-						<input type='text' name='user[email]'><br>
-						<label>Password</label>
-						<input type='password' name='user[password]' placeholder='min 7 characters'><br>
-						<label>Confirm Password</label>
-						<input type='password' name='user[password_confirmation]'><br><br>
-						<input type='submit' value='Register' class='btn btn-primary'>
-					</form>
-				</div>
-				<!-- Login -->
-				<div class='col-sm-4' style='text-align:right'>
-					<h3 style='text-align: center'>Login</h3><br>
-					<form action='/sessions' method='post'>
-						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-						<label>Email</label>
-						<input type='text' name='session[email]'><br>
-						<label>Password</label>
-						<input type='password' name='session[password]'><br><br>
-						<input type='submit' value='Log In' class='btn btn-primary'>
-					</form>
+						<% if @success %>
+							<h4 style='color:green'><%= @success %></h4>
+						<% end %>
+						<p class='intro center-block'>The first step to a better understanding of your food intolerances is through a careful record of dietary habits.</p>
+						<!-- Input Forms -->
+						<div class="modal-body reg-modal form-group center-block">
+							
+							<form action='/users' method='post'>
+								<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+								<label>Name</label><input type='text' class="form-control" name='user[name]'><br>
+								<label>Email</label>
+								<input type='text' class="form-control" name='user[email]'><br>
+								<label>Password</label>
+								<input type='password' class="form-control" name='user[password]' placeholder='min 7 characters'><br>
+								<label>Confirm Password</label>
+								<input type='password' class="form-control" name='user[password_confirmation]'><br><br>
+								<input type='submit' value='Register' class='btn btn-success'>
+							</form>
+						</div>
+			            <div class="modal-footer">
+			                <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</div> <!-- For row -->
+
+				<!-- LOGIN PANEL -->
+				<div class='col-m-5 center-block login-div text-center'>
+					<div class='form-group'>
+						<form action='/sessions' method='post'>
+							<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+							<label class='text-left'>Email</label>
+							<input type='text' class="form-control" name='session[email]'><br>
+							<label class='text-left'>Password</label>
+							<input type='password' class="form-control" name='session[password]'><br><br>
+							<button class='btn btn-info'>Log In</button>
+						</form>
+					</div>
+				<!-- End of LOGIN -->
+				<!-- Register Button -->
+				 <button id="register" type='submit' class='btn btn-warning'>
+				 	<label class="glyphicon glyphicon-user" aria-hidden="true"></label>
+				 	REGISTER
+				 </button>
+				 <!-- End of Register Button -->
 				</div>
 			</div>
 		</div>

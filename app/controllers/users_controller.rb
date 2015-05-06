@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User successfully created!"
-      redirect_to '/users'
+      redirect_to '/mains'
     else
       flash[:errors] = @user.errors.full_messages
       redirect_to '/users'
