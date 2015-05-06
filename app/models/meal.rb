@@ -2,6 +2,8 @@ class Meal < ActiveRecord::Base
   belongs_to :user
   belongs_to :symptom
   has_many :ingredients
+  has_many :reactions
+  has_many :symptoms, through: :reactions
 
   #  for uploading a picture via paperclip
   has_attached_file :meal_pic

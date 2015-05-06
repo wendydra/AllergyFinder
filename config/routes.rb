@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :sessions, :mains, :users, :meals
-  post 'mains/test' => 'mains#test'
+  post 'meals/ingredients' => 'meals#ingredients'
   root 'users#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

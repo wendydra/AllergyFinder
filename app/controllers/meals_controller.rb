@@ -1,7 +1,7 @@
 class MealsController < ApplicationController
   def index
-    if flash[:meal_id]
-       @meal = Meal.find(flash[:meal_id])
+    if session[:meal_id]
+       @meal = Meal.find(session[:meal_id])
     end
     @symptoms = Symptom.all
     @user = User.find(session[:user_id])
@@ -17,12 +17,25 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     if @meal.save
-      flash[:meal_id] = @meal.id
+      session[:meal_id] = @meal.id
       redirect_to '/meals'
     else
       redirect_to '/meals'
     end
   end
+
+  def ingredients
+    @items = params[:output]
+    @items.each do |key, values|
+      values.each do |ingr|
+        Ingredient.create(name:ingr, meal_id: session[:meal_id], category_id: key)
+      end
+    end
+    session[:meal_id] = nil
+    redirect_to '/meals'
+  end  
+
+
 
   def update
   end

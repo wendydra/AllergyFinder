@@ -14,7 +14,6 @@
 		 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-		  <link rel="stylesheet" href="/resources/demos/style.css">
 		  <script>
 		  $(function() {
 		    var icons = {
@@ -50,27 +49,15 @@
 						<div id="accordion">
 						  <h3>Grains</h3>
 						  <div>
-						  	<p>
-						    <input type="checkbox" value="rice" name='output["grain"][]'> Rice
-						  </p>
-	  					  <p>
-						    <input type="checkbox" value="brown rice" name='output["grain"][]'> Brown rice
-						  </p>
-						   <p>
-						    <input type="checkbox" value="wheat" name='output["grain"][]'> Wheat
-						  </p>
+							<p><input type="checkbox" value="rice" name='output["grain"][]'> Rice</p>
+		  					<p><input type="checkbox" value="brown rice" name='output["grain"][]'> Brown rice</p>
+							<p><input type="checkbox" value="wheat" name='output["grain"][]'> Wheat</p>
 						  </div>
 						  <h3>Vegetables</h3>
 						  <div>
-						    <p>
-						    <input type="checkbox" value="carrots" name='output["vegetable"][]'> Carrots
-						  </p>
-	  					  <p>
-						    <input type="checkbox" value="eggplant" name='output["vegetable"][]'> Eggplant
-						  </p>
-						   <p>
-						    <input type="checkbox" value="zucchini" name='output["vegetable"][]'> Zucchini
-						  </p>
+						    <p><input type="checkbox" value="carrots" name='output["vegetable"][]'> Carrots</p>
+	  					 	<p><input type="checkbox" value="eggplant" name='output["vegetable"][]'> Eggplant</p>
+						    <p><input type="checkbox" value="zucchini" name='output["vegetable"][]'> Zucchini</p>
 						  </div>
 						  <h3>Fruits</h3>
 						  <div>
@@ -80,48 +67,14 @@
 						  <div>
 						    <p>Dairy Here</p>
 						  </div>
-
-
-						</div> <!-- accordian div -->
-					<!-- Submit -->
+						</div> <!-- accordian div ends here-->
+					<!-- Accordian Submit -->
 						<button class='btn btn-success btn-xs pull-right'>Submit</button>
 					</form>
 
 				<div class='col-md-4'>
 					<a href='/meals'><button class='btn btn-primary'>New Meal</button></a>
 				</div>
-
-<!-- 				<div class='col-md-4'>
-					<form action='mains/test' method='post'>
-					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'> -->
-
-
-					<!-- Grain Tab -->
-<!-- 					<form action='mains/test' method='post' class='tab'>
-					
-						<div class="checkbox">
-							<input type='hidden' value='grains' name='category'>
-						  
-						</div>
-						<button class='btn btn-info btn-xs'>Test</button>
-					</form> -->
-					<!-- Veg Tab -->
-<!-- 					<form action='mains/test' method='post' class='tab'>
-					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-						<div class="checkbox">
-							<input type='hidden' value='vegetables' name='category'>
-						  <p>
-						    <input type="checkbox" value="carrots" name='output[]'> Carrots
-						  </p>
-	  					  <p>
-						    <input type="checkbox" value="eggplant" name='output[]'> Eggplant
-						  </p>
-						   <p>
-						    <input type="checkbox" value="zucchini" name='output[]'> Zucchini
-						  </p>
-						</div>
-						<button class='btn btn-info btn-xs'>Test</button>
-					</form> -->
 				</div>
 			</div>
 		</div>

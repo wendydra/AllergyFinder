@@ -1,3 +1,14 @@
-Test Page<br>
-<%=@test%>
-<%=@category%>
+<%@test.each do |key, item| %>
+<%="Category: #{key} "%><br>
+<%="Ingredients:"%>
+<%item.each do |ing|%>
+<%=" #{ing}"%>
+<%end%><br>
+
+<% end %>
+
+
+
+
+<!-- {"2"=>["brown rice", "wheat"], "5"=>["carrots", "eggplant", "zucchini"]} -->
+
