@@ -84,10 +84,18 @@ class MainsController < ApplicationController
     #  Generates a hash to be sent to view containing data for all totals
     @totalsHash = Hash.new
     @totalIngredients.each do |key, food|
-      @totalsHash[key] = food,0
+      @totalsHash[key] = 0,food,0
     end
     @reactionsTotal.each do |key, reactionsTotal|
-      @totalsHash[key][1] = reactionsTotal
+      @totalsHash[key][2] = reactionsTotal
+      @totalsHash[key][0] = ((@totalsHash[key][2].to_f / @totalsHash[key][1].to_f)*100).round(2)  # finds percentage occurance of reaction
+    end
+
+    # Sorts totals hash by largest to smallest percentage of reaction
+    @stuff = @totalsHash.sort_by { |key, val| val }.reverse
+    @sortedHash = Hash.new
+    @stuff.each do |val|
+      @sortedHash[val[0]] = val[1]
     end
 
 

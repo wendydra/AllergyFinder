@@ -10,6 +10,22 @@
 	.symptomButton{
 		display: inline-block;
 	}
+	.red{
+		color: red;
+		font-weight: bold;
+	}
+	.orange{
+		color: #fc8f00;
+		font-weight: bold;
+	}
+	.yellow{
+		color: #fdc700;
+		font-weight: bold;
+	}
+	.green{
+		color: green;
+		font-weight: bold;
+	}
 	</style>
 	<!-- JQuery Accordian -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -26,7 +42,7 @@
 <div class='container'>
 
 	<h1>Data Analysis For <%= @user.name %></h1>
-	
+
 	<div class='buttons'>
 	    <% @symptoms.each do |symptom| %>
 		<form action='/test' method='post' class='symptomButton'>
@@ -48,17 +64,38 @@
 			<th>Ingredient Totals</th>
 		</thead>
 		<tbody>
-			<% @totalsHash.each do |key, total|%>
-			<tr>
-				<td><%= key %></td>
-				<% if total.respond_to?(:length) %>
-					<td><%= total[1] %> (<%= ((total[1].to_f/total[0].to_f)*100).round(2) %>%)</td>
-					<td><%= total[0] %></td>
-				<% else %>
-					<td>0</td>
-					<td><%= total[0] %></td>
+			<% @sortedHash.each do |key, total|%>
+				<% if total[0] > 80 %>
+					<tr class='red'>
+						<td><%= key %></td>
+						<td><%= total[2] %> (<%= total[0] %>%)</td>
+						<td><%= total[1] %></td>
+					</tr>
+				<% elsif total[0] <= 80 && total[0] > 60 %>
+					<tr class='orange'>
+						<td><%= key %></td>
+						<td><%= total[2] %> (<%= total[0] %>%)</td>
+						<td><%= total[1] %></td>
+					</tr>
+				<% elsif total[0] <= 60 && total[0] > 40 %>
+					<tr class='yellow'>
+						<td><%= key %></td>
+						<td><%= total[2] %> (<%= total[0] %>%)</td>
+						<td><%= total[1] %></td>
+					</tr>
+				<% elsif total[0] <= 40 && total[0] > 20 %>
+					<tr style='font-weight: bold'>
+						<td><%= key %></td>
+						<td><%= total[2] %> (<%= total[0] %>%)</td>
+						<td><%= total[1] %></td>
+					</tr>
+				<% elsif total[0] <= 20 %>
+					<tr class='green'>
+						<td><%= key %></td>
+						<td><%= total[2] %> (<%= total[0] %>%)</td>
+						<td><%= total[1] %></td>
+					</tr>
 				<% end %>
-			</tr>
 			<% end %>
 		</tbody>
 	</table>
