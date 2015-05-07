@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :meals
+	has_many :triggers
 
 	attr_accessor :password, :password_confirmation
 

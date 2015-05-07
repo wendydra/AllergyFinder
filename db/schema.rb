@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506020456) do
+ActiveRecord::Schema.define(version: 20150507182430) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 20150506020456) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "triggers", force: true do |t|
+    t.string   "ingredient"
+    t.boolean  "trigger"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "triggers", ["user_id"], name: "index_triggers_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

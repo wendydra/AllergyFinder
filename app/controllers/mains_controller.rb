@@ -55,7 +55,7 @@ class MainsController < ApplicationController
   def destroy
   end
 
-  def test
+  def dataTable
     @user = User.find(session[:user_id])
     @ingredients = Ingredient.all
     @reactions = Reaction.all
@@ -114,6 +114,9 @@ class MainsController < ApplicationController
     end
 
 
-  end #end test def
+  end #end dataTable def
+
+  def test
+  end
 
 end

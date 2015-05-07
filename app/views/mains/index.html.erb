@@ -9,6 +9,11 @@
 		.btn{
 			margin-top:6px;
 		}
+		img{
+			border: solid silver 2px;
+			height: 300px;
+			width: 300px;
+		}
 		</style>
 
 		<!-- JQuery Accordian -->
@@ -39,15 +44,26 @@
 	<body>
 		<!-- Navbar Render -->
 		<%= render 'partials/navbar' %>
-		<p>INFORMATIONAL SECTION CONTAINING SOME INFOS</p>
 
 		<div class='container'>
-			<div class='col-md-4'>
-				<a href='/meals'><button class='btn btn-primary'>New Meal</button></a>
+
+			<div class='row' style='text-align: center'>
+				<div class='col-md-4'>
+					<h2>New Meal</h2>
+					<a href='/meals'><img src="assets/food.jpg" alt="meal" class="img-rounded"></a>
+				</div>
+
+				<div class='col-md-4'>
+					<h2>Reaction</h2>
+					<a href='/reactions'><img src="assets/allergy.jpg" alt="reaction" class="img-rounded"></a>
+				</div>
+
+				<div class='col-md-4'>
+					<h2>Analyze Data</h2>
+					<a href='/dataTable'><img src="assets/graph.jpg" alt="graph" class="img-rounded"></a>
+				</div>
 			</div>
-			<div class='col-md-4'>
-				<a href='/test'><button class='btn btn-success'>Dataaaaa</button></a>
-			</div>
+
 		</div>
 	</body>
 </html>

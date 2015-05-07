@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :sessions, :mains, :users, :meals, :reactions
+  resources :sessions, :mains, :users, :meals, :reactions, :triggers
   post 'meals/ingredients' => 'meals#ingredients'
   get '/test' => 'mains#test'
   post '/test' => 'mains#test'
+  get '/dataTable' => 'mains#dataTable'
 
   root 'users#index'
   
