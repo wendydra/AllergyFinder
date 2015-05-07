@@ -4,25 +4,40 @@ class MainsController < ApplicationController
   end
 
   def show
-    #  Graph Variables
+    #Graph Variables
     @user = User.find(session[:user_id])
-    @symptoms = Symptom.all
     @ingredients = Ingredient.all
     @reactions = Reaction.all
-    @totalsHash = Hash.new
-    @meals = Meal.all
 
     #Finds all meals a user has input
-    @allMeals = Meal.where(user_id: session[:user_id])
-    # @allIngrs = Ingredient.where(id: @allMeals.id)
-      @allMeals.each do |output|
+    # @allMeals = Meal.where(user_id: session[:user_id])
+    # @allMeals.each do |output|
+    #     puts "----------Output:--------"
+    #     puts output.id
+    #   @allIngrs = Ingredient.where(meal_id: output.id)
 
-
-      puts "*************"
-      puts output.id
-      # puts @allIngrs
-      puts "*************"
+    #     @allIngrs.each do |ingredient|
+    #       puts "*************"
+    #       puts ingredient.name
+    #     end
+    # end
+    #Sums the ingredients into categories hash
+    @totalCategory = Hash.new
+    @ingredients.each do |ingredient|
+      if ingredient.meal.user.id == @user.id
+        if @totalCategory[ingredient.category_id]
+          @totalCategory[ingredient.category_id] = @totalCategory[ingredient.category_id] + 1
+        else
+          @totalCategory[ingredient.category_id] = 1
+        end
       end
+    end
+
+    @dataOutput = [0,0,0,0,0,0]
+    @totalCategory.each do |index, value|
+      @dataOutput[index-1] = value; 
+    end
+
   end
 
   def new
