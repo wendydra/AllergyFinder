@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/test' => 'mains#test'
   post '/test' => 'mains#test'
   get '/dataTable' => 'mains#dataTable'
+  post '/dataTable' => 'mains#dataTable'
 
   root 'users#index'
   

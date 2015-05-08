@@ -47,7 +47,7 @@
 
 	<div class='buttons'>
 	    <% @symptoms.each do |symptom| %>
-		<form action='/test' method='post' class='symptomButton'>
+		<form action='/dataTable' method='post' class='symptomButton'>
 			<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 			<input type='hidden' name='symptom' value='<%= symptom.id %>'>
 	   		<button class='btn btn-info'><%= symptom.name %></button>
@@ -95,7 +95,22 @@
 						<td><%= key %></td>
 						<td><%= total[2] %> (<%= total[0] %>%)</td>
 						<td><%= total[1] %></td>
-						<td><button class='btn btn-warning'>Trigger</button> <button class='btn btn-success'>Safe</button></td>
+						<td>
+							<form action='/triggers' method='post' class='symptomButton'>
+								<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+								<input type='hidden' name='user' value='<%= @user.id %>'>
+								<input type='hidden' name='ingredient' value='<%= key %>'>
+								<input type='hidden' name='bool' value='1'>
+								<button class='btn btn-warning'>Trigger</button>
+							</form>
+							<form action='/triggers' method='post' class='symptomButton'>
+								<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+								<input type='hidden' name='user' value='<%= @user.id %>'>
+								<input type='hidden' name='ingredient' value='<%= key %>'>
+								<input type='hidden' name='bool' value='0'>
+								<button class='btn btn-success'>Safe</button>
+							</form>
+						</td>
 					</tr>
 				<% elsif total[0] <= 60 && total[0] > 40 %>
 					<tr class='yellow'>

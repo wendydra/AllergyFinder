@@ -4,14 +4,32 @@
 	   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<style>
+	.triggers{
+		background-color: #f26d6d;
+		color: #b20101;
+		min-height: 400px;
+		border: solid #b20101 2px;
+		border-radius: 5px;
+		margin: 10px;
+		font-weight: bold;
+	}
+	.safe{
+		background-color: #83fc83;
+		color: #087c00;
+		min-height: 400px;
+		border: solid #087c00 2px;
+		border-radius: 5px;
+		margin: 10px;
+		font-weight: bold;
+	}
 	</style>
 </head>
 <body>
 	<%= render 'partials/navbar' %>
 	<div class='container'>
 		<div class='row'>
-			<div class='col-md-6'>
-				<h1>Triggers</h1>
+			<div class='col-md-5 triggers'>
+				<h1 style='color: black'>Triggers</h1>
 				<ul>
 					<% @triggers.each do |trigger| %>
 						<li><%= trigger.ingredient %></li>
@@ -19,8 +37,8 @@
 				</ul>
 			</div>
 
-			<div class='col-md-6'>
-				<h1>Safe</h1>
+			<div class='col-md-5 safe'>
+				<h1 style='color: black'>Safe</h1>
 				<ul>
 					<% @safes.each do |safe| %>
 						<li><%= safe.ingredient %></li>
