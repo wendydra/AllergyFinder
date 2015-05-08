@@ -9,12 +9,6 @@ class MealsController < ApplicationController
     @user = User.find(session[:user_id])
   end
 
-  def show
-  end
-
-  def new
-  end
-
   def create
     @meal = Meal.new(meal_params)
     if @meal.save
@@ -35,15 +29,6 @@ class MealsController < ApplicationController
     session[:meal_id] = nil
     redirect_to '/meals'
   end  
-
-  def update
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
 
   private
   def meal_params

@@ -40,21 +40,6 @@ class MainsController < ApplicationController
 
   end
 
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def dataTable
     @user = User.find(session[:user_id])
     @ingredients = Ingredient.all
@@ -112,8 +97,6 @@ class MainsController < ApplicationController
     @stuff.each do |val|
       @sortedHash[val[0]] = val[1]
     end
-
-
   end #end dataTable def
 
   def test

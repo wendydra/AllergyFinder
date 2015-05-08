@@ -12,9 +12,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def new
-  end
-
   def edit
     @user = User.find(params[:id])
   end
@@ -29,12 +26,6 @@ class UsersController < ApplicationController
       flash[:errors] = @user.errors.full_messages
       redirect_to '/users'
     end
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
