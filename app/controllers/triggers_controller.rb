@@ -11,6 +11,9 @@ class TriggersController < ApplicationController
     else
       @trigger = Trigger.create(ingredient: params[:ingredient], trigger: params[:bool].to_i, user_id: params[:user])
     end
+    if params[:symptomNum]
+      flash[:symptomNum] = params[:symptomNum]
+    end
     redirect_to '/dataTable'
   end
 

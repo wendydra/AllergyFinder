@@ -49,7 +49,11 @@ class MainsController < ApplicationController
     if params[:symptom]
       @symptomName = Symptom.find(params[:symptom])
       @symptomNum = params[:symptom].to_i
+    elsif flash[:symptomNum]
+      @symptomName = Symptom.find(flash[:symptomNum])
+      @symptomNum = flash[:symptomNum].to_i
     else
+      @symptomName = Symptom.first
       @symptomNum = 1
     end
 
