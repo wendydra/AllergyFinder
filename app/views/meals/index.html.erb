@@ -15,6 +15,12 @@
 		html{
 			background-image: url("background.png");
 		}
+		.display{
+			border: solid silver 1px;
+			border-radius:6px;
+			height: 300px;
+			width: 300px;
+		}
 		</style>
 		<!-- JQuery Accordian -->
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -46,13 +52,15 @@
 
 	<!-- Main Body -->
 	<div class='container'>
-		<h1>Create New Meal</h1>
+		
 		<div class='row'>
 			<!-- Add Meal Column -->
-			<div class='col-md-6'>
-				<h2>Meal Picture and Symptom</h2>
+			<div class='col-md-5 col-md-offset-2'>
+				<h1>Create New Meal</h1>
 				<% if @meal %> <!-- Image shows up after it has been submitted -->
-					<%= image_tag @meal.meal_pic.url %>
+					<h3>Your <%=@day%> meal:</h3>
+					<%= image_tag @meal.meal_pic.url , class: "display" %>
+					<p>Date: <%=@time%></p>
 				<% else %>  <!-- else default image and file input show up -->
 					<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANsAAADmCAMAAABruQABAAAAbFBMVEX///8AAABhYWHc3NysrKxlZWU0NDTs7OzR0dHv7++wsLD5+fmTk5N5eXk6OjrFxcWkpKQpKSkuLi7Y2NihoaFLS0sdHR3j4+NUVFQLCwv09PSHh4e7u7sTExMjIyOMjIx2dnZGRkZsbGwYGBhpxbt/AAAEVElEQVR4nO3d22KiMBQFUNGi4g2tWFFsQfv//zilFgGnITkJkBy613MUtiC5QMhoBAAAAAAAAAAAAAAAAAAAAADQtdk+XGzTJPP9sQnfz5J0uwj3M9uBcrMwWh8+vfZ9HtZRaC1icEkPHYSqO6Rh0Huu7NR5rsIpu/SWb7+a9parMF1NegiW9HfA6k7JvstgQfRuKdjde9TVyTkfWw12N553kGyxsx3rx27RcrKt7UQ12xaTLWyH+U9bxy78IG966lPO4J1Pr1Q+whaSzWLydtPz1+eCtWLpdX7tO6fkrcTGLTKNP1rxi6qdycXZFdI3FBklm23oW1w9Pp0plM4epVf0TW0MqrsLfXOetyx/GYXS5Ym11NnYRTea6j+m5lD5gjdp6bdKaa1exVor2VLjfHzamPwyFJv+lN5m+bzjcjPNpmPPx+2rkUm+Xh71NuT1/H/7dqRF22tvqM/rZIHU+dE/al6P9VuJcOQCk+301S6pUa/o5NcAie7bk0/e5KHu6C1I+2J5rFxkez+1KDUuJ7b3UpPKQJgrYwdUu6GekTnpWXm2vYcGzpJseg1WN0j6BIa1tmXNNbhh88CytDGb7b0z1BSNPIiw8SkDfK/+K6H0h0/uHTcNMRBH/Fd5X212Uyyd5Nexc6JY+pb37JbEjs9YHI3YPSxuO6iN8xW/qdq5UQyLz2m7JB5goPWhyrrSVyidPEqrHDn/UZrWlhCPNqueL3fl51S6smXFqtI8qHQ2SfuUjERIozHVc1t+L3VaKS3vrZ0qpUnXgOpIVB3lW2o/0VVa+lYpLb/4XFs4mepUxqVKTh43TzSgRxzcKj/ozv9NOORFrLldvE4Ka2/q7VEH6zfhDVXyrd8u2yWZTrtEnO2F+kXOtSc976W9bM5BNp6QjSdk4wnZeEI2npCNJ2TjCdl4QjaekI0nUTa3JqboEU1nCSb89T2DEwAAAIDoaLu91Ipfpq+ELky6b8e4/lDXpP83W3RpWpkrMITOTd2jq2Mw88xZP7Pw3HujQBu+HzShPaHGR/7sDccZYSpiw+mXTjsO8kJytxrsKZmflHbfbtSld+6zVJqMKE/98fKqNHmep0zvHSUsXNhPCxMbDePuzW++7+hcbe9FJ+5TQ5a23kzYpdPPbLFgePX3Z3mvajiDJXe1+YvhkAZMps8z/CbRzej9wa64RT28PRUAAAAAfnOJbTcGjcWi+d1DGF34i8+9IpvbkI0nZOMJ2XhCNp5E2YZwm1HUVjZ4QbszRO+w0n/LvTuELzLkf8NjKoo2gOefVsJs/J9ba1hI4Gp73wxdxdHMFl9wQOMiVXrrxrhi0xSNeRUnWZNkwO8z57t8gMoCAnwfO1dY34j6NktXKC2gybMiUFyjkOORU1729Mjt6bUTZbktlTfvusOXB6ri9KejLwfKZVKc3iK1DOZpjg2WcJ1v177te6EC/nrbxZrQAAAAAAAAAAAAAAAAAAAAAPBn/AP9mX28w/FdPAAAAABJRU5ErkJggg==' alt='food'>
 					<form action='/meals' method='post' enctype='multipart/form-data'>
@@ -67,7 +75,7 @@
 
 			<% if @meal %>  <!-- Only shows up after user has submitted picture -->
 			<!-- Add Ingredients Column -->
-			<div class='col-md-6 ingredients'>
+			<div class='col-md-6 ingredients center-block'>
 				<!-- Item Selection Accordian -->
 				<form action='meals/ingredients' method='post' class='tab'>
 					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
@@ -77,20 +85,57 @@
 							<p><input type="checkbox" value="rice" name='output[2][]'> Rice</p>
 		  					<p><input type="checkbox" value="brown rice" name='output[2][]'> Brown rice</p>
 							<p><input type="checkbox" value="wheat" name='output[2][]'> Wheat</p>
+							<p><input type="checkbox" value="oats" name='output[2][]'> Oats</p>
+							<p><input type="checkbox" value="oatmeal" name='output[2][]'> Oatmeal</p>
+							<p><input type="checkbox" value="cornmeal" name='output[2][]'> Cornmeal</p>
+							<p><input type="checkbox" value="millet" name='output[2][]'> Millet</p>
+							<p><input type="checkbox" value="flaxseed" name='output[2][]'> Flaxseed</p>
+							<p><input type="checkbox" value="barley" name='output[2][]'> Barley</p>
+							<p><input type="checkbox" value="buckwheat" name='output[2][]'> Bucketwheat</p>
 						  </div>
 						  <h3>Vegetables</h3>
 						  <div>
-						    <p><input type="checkbox" value="carrots" name='output[5][]'> Carrots</p>
+						    <p><input type="checkbox" value="bell_pepper" name='output[5][]'> Bell Pepper</p>
+						    <p><input type="checkbox" value="cabbage" name='output[5][]'> Cabbage</p>
+						    <p><input type="checkbox" value="carrot" name='output[5][]'> Carrot</p>
+						    <p><input type="checkbox" value="corn" name='output[5][]'> Corn</p>
 	  					 	<p><input type="checkbox" value="eggplant" name='output[5][]'> Eggplant</p>
 						    <p><input type="checkbox" value="zucchini" name='output[5][]'> Zucchini</p>
+						    <p><input type="checkbox" value="leek" name='output[5][]'> Leek</p>
+						    <p><input type="checkbox" value="okra" name='output[5][]'> Okra</p>
 						  </div>
 						<h3>Fruits</h3>
 						<div>
-							<p>Fruits Here </p>
+							<p><input type="checkbox" value="apple" name='output[4][]'> Apple</p>
+							<p><input type="checkbox" value="banana" name='output[4][]'> Banana</p>
+							<p><input type="checkbox" value="blueberries" name='output[4][]'> Blueberries</p>
+							<p><input type="checkbox" value="blackberries" name='output[4][]'> Blackberries</p>
+							<p><input type="checkbox" value="cantaloupe" name='output[4][]'> Cantaloupe</p>
+							<p><input type="checkbox" value="coconut" name='output[4][]'> Coconut</p>
+							<p><input type="checkbox" value="cherries" name='output[4][]'> Cherries</p>
+							<p><input type="checkbox" value="grape" name='output[4][]'> Grapes</p>
+							<p><input type="checkbox" value="mango" name='output[4][]'> Mango</p>
+							<p><input type="checkbox" value="strawberries" name='output[4][]'> Strawberries</p>
 						</div>
 						<h3>Dairy</h3>
 						<div>
-							<p>Dairy Here</p>
+							<p><input type="checkbox" value="cow_milk" name='output[1][]'> Cow Milk</p>
+							<p><input type="checkbox" value="goat_milk" name='output[1][]'> Goat Milk</p>
+							<p><input type="checkbox" value="eggs" name='output[1][]'> Eggs</p>
+							<p><input type="checkbox" value="butter" name='output[1][]'> Butter</p>
+							<p><input type="checkbox" value="yogurt" name='output[1][]'> Yogurt</p>
+							<p><input type="checkbox" value="cream" name='output[1][]'> Cream</p>
+						</div>
+						<h3>Meats</h3>
+						<div>
+							<p><input type="checkbox" value="beef" name='output[3][]'> Beef</p>
+							<p><input type="checkbox" value="pork" name='output[3][]'> Pork</p>
+							<p><input type="checkbox" value="chicken" name='output[3][]'> Chicken</p>
+							<p><input type="checkbox" value="lamb" name='output[3][]'> Lamb</p>
+							<p><input type="checkbox" value="fish" name='output[3][]'> Fish</p>
+							<p><input type="checkbox" value="turkey" name='output[3][]'> Turkey</p>
+							<p><input type="checkbox" value="rabbit" name='output[5][]'> Rabbit</p>
+							<p><input type="checkbox" value="shellfish" name='output[5][]'> Shellfish</p>
 						</div>
 					</div> <!-- accordian div -->
 				<!-- Submit -->

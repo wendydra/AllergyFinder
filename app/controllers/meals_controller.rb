@@ -2,6 +2,8 @@ class MealsController < ApplicationController
   def index
     if session[:meal_id]
        @meal = Meal.find(session[:meal_id])
+       @time = @meal.created_at.strftime("%B-%d-%Y %I:%M %p")
+       @day = @meal.created_at.strftime("%A")
     end
     @symptoms = Symptom.all
     @user = User.find(session[:user_id])
