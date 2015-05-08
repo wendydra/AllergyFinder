@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "User successfully created!"
+      session[:user_id] = @user.id
       redirect_to '/mains'
     else
       flash[:errors] = @user.errors.full_messages
@@ -40,5 +41,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-
 end
