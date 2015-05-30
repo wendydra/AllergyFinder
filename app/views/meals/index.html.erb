@@ -1,0 +1,156 @@
+<html>
+	<head>
+	<!-- Bootstrap CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+		<style>
+		.ingredients{
+			width:300px;
+		}
+		.btn{
+			margin-top: 5px;
+		}
+		html{
+			background-image: url("background.png");
+		}
+		.display{
+			border: solid silver 1px;
+			border-radius:6px;
+			height: 300px;
+			width: 300px;
+		}
+		.upload{
+			width:50%;
+			margin-left:43px;
+		}
+		</style>
+		<!-- JQuery Accordian -->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script>
+			$(function() {
+				var icons = {
+				  header: "ui-icon-circle-arrow-e",
+				  activeHeader: "ui-icon-circle-arrow-s"
+				};
+				$( "#accordion" ).accordion({
+				  heightStyle: "content",
+				  icons: icons
+				});
+				$( "#toggle" ).button().click(function() {
+				  if ( $( "#accordion" ).accordion( "option", "icons" ) ) {
+				    $( "#accordion" ).accordion( "option", "icons", null );
+				  } else {
+				    $( "#accordion" ).accordion( "option", "icons", icons );
+				  }
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<!-- Navbar Render -->
+		<%= render 'partials/navbar' %>
+
+	<!-- Main Body -->
+	<div class='container'>
+		
+		<div class='row'>
+			<!-- Add Meal Column -->
+			<div class='col-md-5 col-md-offset-2'>
+				<h1>Create New Meal</h1>
+				<% if @meal %> <!-- Image shows up after it has been submitted -->
+					<h3>Your <%=@day%> meal:</h3>
+					<%= image_tag @meal.meal_pic.url , class: "display" %>
+					<p>Date: <%=@time%></p>
+				<% else %>  <!-- else default image and file input show up -->
+					<%= image_tag 'green.png', class: 'upload' %>
+					<form action='/meals' method='post' enctype='multipart/form-data'>
+						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+						<input type='hidden' name='meal[user_id]' value='<%= @user.id %>'>
+						<br
+						<label>Upload Image </label>
+						<input type="file" name="meal[meal_pic]"><br>
+						<input type='submit' class='btn btn-success' value='Add Meal'>
+					</form>
+				<% end %>
+			</div>
+
+			<% if @meal %>  <!-- Only shows up after user has submitted picture -->
+			<!-- Add Ingredients Column -->
+			<div class='col-md-6 ingredients center-block'>
+				<!-- Item Selection Accordian -->
+				<form action='meals/ingredients' method='post' class='tab'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					<div id="accordion">
+						<h3>Grains</h3>
+						  <div class='tab'>
+							<p><input type="checkbox" value="rice" name='output[2][]'> Rice</p>
+		  					<p><input type="checkbox" value="brown rice" name='output[2][]'> Brown rice</p>
+							<p><input type="checkbox" value="wheat" name='output[2][]'> Wheat</p>
+							<p><input type="checkbox" value="oats" name='output[2][]'> Oats</p>
+							<p><input type="checkbox" value="oatmeal" name='output[2][]'> Oatmeal</p>
+							<p><input type="checkbox" value="cornmeal" name='output[2][]'> Cornmeal</p>
+							<p><input type="checkbox" value="millet" name='output[2][]'> Millet</p>
+							<p><input type="checkbox" value="barley" name='output[2][]'> Barley</p>
+							<p><input type="checkbox" value="buckwheat" name='output[2][]'> Bucketwheat</p>
+							<a href="#"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></a> 
+						  </div>
+						  <h3>Vegetables</h3>
+						  <div>
+						    <p><input type="checkbox" value="bell_pepper" name='output[5][]'> Bell Pepper</p>
+						    <p><input type="checkbox" value="cabbage" name='output[5][]'> Cabbage</p>
+						    <p><input type="checkbox" value="carrot" name='output[5][]'> Carrot</p>
+						    <p><input type="checkbox" value="corn" name='output[5][]'> Corn</p>
+	  					 	<p><input type="checkbox" value="eggplant" name='output[5][]'> Eggplant</p>
+						    <p><input type="checkbox" value="zucchini" name='output[5][]'> Zucchini</p>
+						    <p><input type="checkbox" value="leek" name='output[5][]'> Leek</p>
+						    <p><input type="checkbox" value="okra" name='output[5][]'> Okra</p>
+							<a href="#"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></a>
+						  </div>
+						<h3>Fruits</h3>
+						<div>
+							<p><input type="checkbox" value="apple" name='output[4][]'> Apple</p>
+							<p><input type="checkbox" value="banana" name='output[4][]'> Banana</p>
+							<p><input type="checkbox" value="blueberries" name='output[4][]'> Blueberries</p>
+							<p><input type="checkbox" value="blackberries" name='output[4][]'> Blackberries</p>
+							<p><input type="checkbox" value="cantaloupe" name='output[4][]'> Cantaloupe</p>
+							<p><input type="checkbox" value="coconut" name='output[4][]'> Coconut</p>
+							<p><input type="checkbox" value="cherries" name='output[4][]'> Cherries</p>
+							<p><input type="checkbox" value="grape" name='output[4][]'> Grapes</p>
+							<p><input type="checkbox" value="mango" name='output[4][]'> Mango</p>
+							<p><input type="checkbox" value="strawberries" name='output[4][]'> Strawberries</p>
+							<a href="#"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></a>
+						</div>
+						<h3>Dairy</h3>
+						<div>
+							<p><input type="checkbox" value="cow_milk" name='output[1][]'> Cow Milk</p>
+							<p><input type="checkbox" value="goat_milk" name='output[1][]'> Goat Milk</p>
+							<p><input type="checkbox" value="eggs" name='output[1][]'> Eggs</p>
+							<p><input type="checkbox" value="butter" name='output[1][]'> Butter</p>
+							<p><input type="checkbox" value="yogurt" name='output[1][]'> Yogurt</p>
+							<p><input type="checkbox" value="cream" name='output[1][]'> Cream</p>
+							<a href="#"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></a>
+						</div>
+						<h3>Meats</h3>
+						<div>
+							<p><input type="checkbox" value="beef" name='output[3][]'> Beef</p>
+							<p><input type="checkbox" value="pork" name='output[3][]'> Pork</p>
+							<p><input type="checkbox" value="chicken" name='output[3][]'> Chicken</p>
+							<p><input type="checkbox" value="lamb" name='output[3][]'> Lamb</p>
+							<p><input type="checkbox" value="fish" name='output[3][]'> Fish</p>
+							<p><input type="checkbox" value="turkey" name='output[3][]'> Turkey</p>
+							<p><input type="checkbox" value="rabbit" name='output[5][]'> Rabbit</p>
+							<p><input type="checkbox" value="shellfish" name='output[5][]'> Shellfish</p>
+							<a href="#"><span class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span></a>
+						</div>
+					</div> <!-- accordian div -->
+				<!-- Submit -->
+				<button class='btn btn-success btn-xs pull-right'>Submit</button>
+				</form>
+			<% end %>
+		</div>
+	</body>
+</html>

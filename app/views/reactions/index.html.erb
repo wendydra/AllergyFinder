@@ -1,0 +1,84 @@
+<head>
+<!-- Bootstrap CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>	
+	<style>
+	.slider{
+		width:280px;
+	}
+	#amount{
+		width:20px;
+		display:inline-block;
+	}
+	#format { 
+		margin-top: 2em; 
+	}
+	#radio{
+		margin-top:10px;
+	}
+	.digest{
+		width: 25%;
+	}
+	.timestamp{
+		font-weight: bold;
+		color:#8BC43F;
+	}
+	</style>
+	<!-- JQuery Accordian -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$(function() {
+		    $( "#slider-range-max" ).slider({
+		      range: "max",
+		      min: 1,
+		      max: 10,
+		      value: 5,
+		      slide: function( event, ui ) {
+		        $( "#amount" ).val( ui.value );
+		      }
+		    });
+		    $( "#amount" ).val( $( "#slider-range-max" ).slider( "value" ) );
+
+		    $( "#radio" ).buttonset();
+		});
+
+	</script>
+</head>
+<body>
+	<!-- Navbar Render -->
+	<%= render 'partials/navbar' %>
+	
+	<!-- Main Body	 -->
+	<div class='container'>
+		<!-- Reaction Sliders -->
+		<div class='row'>
+			<div class='col-md-10 col-md-offset-1'>
+				<!-- <%=  image_tag "digest.png", alt: "digestion", class: "digest center-block " %> -->
+				<img src="assets/allergy.jpg" alt="reaction" class="img-circle center-block">
+					<%if @success_msg%>
+					<p class='text-center' style='color: green;'><%=@success_msg%></p>
+					<%end%>
+					<p class='text-center'>Reactions too food intolerance may take several minutes or even several hours before you notice. For better data analysis, record your body's symptoms as they present themselves.</p>
+					<p class='text-center timestamp'>Current Time: <%=@time%> </p>
+				<form action='/reactions' method='post'>
+					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
+					<label class='center-block text-center'>Reaction Severity Level:
+					<input type="text" id="amount" name='severity_level' readonly style="border:0; color:#f6931f; font-weight:bold;">
+					</label>
+					<div class='slider center-block' id="slider-range-max"></div>
+					<div id="radio" class='center-block text-center'>
+						<% @symptoms.each do |symptom|%>
+							<input type="radio" value="<%= symptom.id %>" id="<%= symptom.id %>" name="symptom_id"><label for="<%= symptom.id %>"><%= symptom.name %></label>
+						<%end%>
+				   </div>
+					<button class='btn btn-warning center-block'>Add Symptom</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</body>
