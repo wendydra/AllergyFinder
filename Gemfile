@@ -48,3 +48,7 @@ gem 'rails-footnotes'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'hirb'
 gem "paperclip", "~> 4.2"
+
+group :production do
+  gem 'rails_12factor'
+end
