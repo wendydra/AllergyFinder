@@ -2,7 +2,8 @@ class ReactionsController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     @symptoms = Symptom.all
-    @time = Time.new.strftime("%B-%d-%Y %I:%M %p")
+    @time = Time.new.strftime("%I:%M %p")
+    @date = Time.new.strftime("%B %d, %Y")
     if flash[:success]
       @success_msg = flash[:success]
     end
