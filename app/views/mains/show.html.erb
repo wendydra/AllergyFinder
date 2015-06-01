@@ -21,7 +21,7 @@
 	</style>
 	<!-- High Charts JQuery -->
 	<script>
-	$( document ).on('page:change') {
+	$( document ).ready(function() {
 		$(function () {
 		    $('#container').highcharts({
 		        chart: {
@@ -73,7 +73,7 @@
 	});
 	</script>
 </head>
-<body>
+<body data-no-turbolink>
 	<!-- Navbar Render -->
 	<%= render 'partials/navbar' %>
 <div class='container'>
