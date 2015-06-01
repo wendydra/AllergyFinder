@@ -66,8 +66,8 @@
 					<p class='text-center' style='color: green;'><%=@success_msg%></p>
 					<%end%>
 					<p class='text-center'>Reactions too food intolerance may take several minutes or even several hours before you notice. For better data analysis, record your body's symptoms as they present themselves.</p>
-					<p class='text-center timestamp'>Current Time: <%=@time%> </p>
-					<p class='text-center timestamp'>Today's Date: <%=@date%> </p>
+					<p class='text-center timestamp'><%=@date%> </p>
+					<p class='text-center timestamp'><%=@time%> </p>
 				<form action='/reactions' method='post'>
 					<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 					<label class='center-block text-center'>Reaction Severity Level:

@@ -12,9 +12,6 @@
 		.btn{
 			margin-top: 5px;
 		}
-		html{
-			background-image: url("background.png");
-		}
 		.display{
 			border: solid silver 1px;
 			border-radius:6px;
@@ -74,7 +71,7 @@
 						<input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
 						<input type='hidden' name='meal[user_id]' value='<%= @user.id %>'>
 						<br
-						<label>Upload Image </label>
+						<label>Upload a picture of your meal here. </label>
 						<input type="file" name="meal[meal_pic]"><br>
 						<input type='submit' class='btn btn-success' value='Add Meal'>
 					</form>
