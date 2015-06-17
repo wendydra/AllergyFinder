@@ -16,4 +16,3 @@
 //= require jquery.form.min
 //= require bootstrap.min
 //= require_tree .
-//= require turbolinks
