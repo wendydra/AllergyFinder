@@ -19,63 +19,63 @@
 		border-radius:6px;
 	}
 	</style>
-	<!-- High Charts JQuery -->
+	<!-- High Charts jQuery -->
 	<script>
-	// $( document ).ready(function() {
-		$(function () {
-		    $('#container').highcharts({
-		        chart: {
-		            polar: true,
-		            type: 'line'
-		        },
+	$( document ).ready(function() {
+		// $(function () {
+	    $('#container').highcharts({
+	        chart: {
+	            polar: true,
+	            type: 'line'
+	        },
 
-		        title: {
-		            text: 'Overall Diet Category Distribution',
-		            x: -80
-		        },
+	        title: {
+	            text: 'Overall Diet Category Distribution',
+	            x: -80
+	        },
 
-		        pane: {
-		            size: '80%'
-		        },
+	        pane: {
+	            size: '80%'
+	        },
 
-		        xAxis: {
-		            categories: ['Dairy', 'Grains', 'Meats', 'Fruits',
-		                    'Vegetables', 'Processed'],
-		            tickmarkPlacement: 'on',
-		            lineWidth: 0
-		        },
+	        xAxis: {
+	            categories: ['Dairy', 'Grains', 'Meats', 'Fruits',
+	                    'Vegetables', 'Processed'],
+	            tickmarkPlacement: 'on',
+	            lineWidth: 0
+	        },
 
-		        yAxis: {
-		            gridLineInterpolation: 'polygon',
-		            lineWidth: 0,
-		            min: 0
-		        },
+	        yAxis: {
+	            gridLineInterpolation: 'polygon',
+	            lineWidth: 0,
+	            min: 0
+	        },
 
-		        tooltip: {
-		            shared: true,
-		            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
-		        },
+	        tooltip: {
+	            shared: true,
+	            pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+	        },
 
-		        legend: {
-		            align: 'right',
-		            verticalAlign: 'top',
-		            y: 70,
-		            layout: 'vertical'
-		        },
+	        legend: {
+	            align: 'right',
+	            verticalAlign: 'top',
+	            y: 70,
+	            layout: 'vertical'
+	        },
 
-		        series: [{
-		            name: 'Quantity',
-		            data: <%=@dataOutput%>,
-		            pointPlacement: 'on'
-		        }]
-		    });
+	        series: [{
+	            name: 'Quantity',
+	            data: <%=@dataOutput%>,
+	            pointPlacement: 'on'
+	        }]
 	    });
-	// });
+	    // });
+	});
 	</script>
+	<!-- Navbar Render -->
 </head>
 <body>
-	<!-- Navbar Render -->
-	<%= render 'partials/navbar' %>
+	
 <div class='container'>
 	<div class='row'>
 		<div class='text-center'>
@@ -83,6 +83,7 @@
 		</div>
 	</div>
 	<div class='row text-center'>
+		
 	<!-- Navigation Buttons -->
 		<button class='btn btn-info btn-xs center-block' disabled>Category Distribution</button>
 		<a href="/graph2"><button class='btn btn-info btn-xs center-block'>Time of Day Analyis</button></a>
